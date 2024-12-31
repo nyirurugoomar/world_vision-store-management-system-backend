@@ -14,6 +14,7 @@ const storekeeper_module_1 = require("./storekeeper/storekeeper.module");
 const technician_module_1 = require("./technician/technician.module");
 const config_1 = require("@nestjs/config");
 const mongoose_1 = require("@nestjs/mongoose");
+const item_module_1 = require("./item/item.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -25,7 +26,7 @@ exports.AppModule = AppModule = __decorate([
                 isGlobal: true,
             }),
             mongoose_1.MongooseModule.forRoot(process.env.DB_URI),
-            storekeeper_module_1.StorekeeperModule, technician_module_1.TechnicianModule
+            storekeeper_module_1.StorekeeperModule, technician_module_1.TechnicianModule, item_module_1.ItemModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

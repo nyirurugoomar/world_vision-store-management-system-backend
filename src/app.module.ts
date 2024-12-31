@@ -5,6 +5,7 @@ import { StorekeeperModule } from './storekeeper/storekeeper.module';
 import { TechnicianModule } from './technician/technician.module';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ItemModule } from './item/item.module';
 
 @Module({
   imports: [
@@ -13,7 +14,7 @@ import { MongooseModule } from '@nestjs/mongoose';
      isGlobal: true,
     }),
     MongooseModule.forRoot(process.env.DB_URI),
-    StorekeeperModule, TechnicianModule
+    StorekeeperModule, TechnicianModule, ItemModule
   ],
   controllers: [AppController],
   providers: [AppService],

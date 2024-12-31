@@ -63,7 +63,7 @@ let TechnicianService = class TechnicianService {
         }
         return {
             message: 'Technician deleted successfully!',
-            course: deleteTechnician
+            technician: deleteTechnician
         };
     }
 };
