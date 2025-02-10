@@ -15,4 +15,8 @@ export declare class TechnicianService {
         technician: Technician;
     }>;
     deleteTechnicianById(id: string): Promise<any>;
+    loginTechnician(name: string, password: string): Promise<{
+        message: string;
+        technician: Technician;
+    }>;
 }

@@ -2,6 +2,7 @@ import { Body, Controller, Get,Param,Post,Put,Delete } from '@nestjs/common';
 import { TechnicianService } from './technician.service';
 import { Technician } from './schemas/technician.schema';
 import { CreateTechnicianDto } from './dto/create-technician.dto';
+import { LoginTechnicianDto } from './dto/login-technician.dto';
 
 @Controller('technician')
 export class TechnicianController {
@@ -44,6 +45,11 @@ export class TechnicianController {
         id: string,
     ): Promise<any>{
         return await this.technicalService.deleteTechnicianById(id)
+    }
+
+    @Post('login')
+    async login(@Body() loginDto:LoginTechnicianDto ) {
+        return this.technicalService.loginTechnician(loginDto.name, loginDto.password);
     }
 
 }

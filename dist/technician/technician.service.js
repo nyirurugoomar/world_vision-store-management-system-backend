@@ -66,6 +66,19 @@ let TechnicianService = class TechnicianService {
             technician: deleteTechnician
         };
     }
+    async loginTechnician(name, password) {
+        const technician = await this.technicianModel.findOne({ name }).exec();
+        if (!technician) {
+            throw new common_1.NotFoundException('Technician not found.');
+        }
+        if (technician.password !== password) {
+            throw new common_1.UnauthorizedException('Invalid credentials.');
+        }
+        return {
+            message: 'Login successful',
+            technician,
+        };
+    }
 };
 exports.TechnicianService = TechnicianService;
 exports.TechnicianService = TechnicianService = __decorate([

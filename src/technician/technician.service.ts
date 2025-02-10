@@ -1,9 +1,9 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { Technician } from './schemas/technician.schema';
 import * as mongoose from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateTechnicianDto } from './dto/create-technician.dto';
-
+import * as bcrypt from 'bcrypt';
 
 
 @Injectable()
@@ -66,6 +66,25 @@ export class TechnicianService {
         return {
             message: 'Technician deleted successfully!',
             technician: deleteTechnician
+        };
+    }
+
+
+    
+    async loginTechnician(name: string, password: string): Promise<{ message: string; technician: Technician }> {
+        const technician = await this.technicianModel.findOne({ name }).exec();
+    
+        if (!technician) {
+            throw new NotFoundException('Technician not found.');
+        }
+    
+        if (technician.password !== password) {
+            throw new UnauthorizedException('Invalid credentials.');
+        }
+    
+        return {
+            message: 'Login successful',
+            technician,
         };
     }
 }

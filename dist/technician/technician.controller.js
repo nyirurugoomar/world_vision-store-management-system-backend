@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const technician_service_1 = require("./technician.service");
 const technician_schema_1 = require("./schemas/technician.schema");
 const create_technician_dto_1 = require("./dto/create-technician.dto");
+const login_technician_dto_1 = require("./dto/login-technician.dto");
 let TechnicianController = class TechnicianController {
     constructor(technicalService) {
         this.technicalService = technicalService;
@@ -35,6 +36,9 @@ let TechnicianController = class TechnicianController {
     }
     async deleteTechnician(id) {
         return await this.technicalService.deleteTechnicianById(id);
+    }
+    async login(loginDto) {
+        return this.technicalService.loginTechnician(loginDto.name, loginDto.password);
     }
 };
 exports.TechnicianController = TechnicianController;
@@ -73,6 +77,13 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], TechnicianController.prototype, "deleteTechnician", null);
+__decorate([
+    (0, common_1.Post)('login'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [login_technician_dto_1.LoginTechnicianDto]),
+    __metadata("design:returntype", Promise)
+], TechnicianController.prototype, "login", null);
 exports.TechnicianController = TechnicianController = __decorate([
     (0, common_1.Controller)('technician'),
     __metadata("design:paramtypes", [technician_service_1.TechnicianService])

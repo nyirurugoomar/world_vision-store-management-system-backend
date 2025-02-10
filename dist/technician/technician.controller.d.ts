@@ -1,6 +1,7 @@
 import { TechnicianService } from './technician.service';
 import { Technician } from './schemas/technician.schema';
 import { CreateTechnicianDto } from './dto/create-technician.dto';
+import { LoginTechnicianDto } from './dto/login-technician.dto';
 export declare class TechnicianController {
     private technicalService;
     constructor(technicalService: TechnicianService);
@@ -15,4 +16,8 @@ export declare class TechnicianController {
         technician: Technician;
     }>;
     deleteTechnician(id: string): Promise<any>;
+    login(loginDto: LoginTechnicianDto): Promise<{
+        message: string;
+        technician: Technician;
+    }>;
 }
